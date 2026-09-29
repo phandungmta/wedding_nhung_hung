@@ -1,0 +1,9 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/tao-link",
+      "destination": "/tao-link.html"
+    }
+  ]
+}

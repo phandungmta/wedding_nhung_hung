@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Tạo link mời cưới</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff7f7;
+            color: #3b2525;
+        }
+
+        main {
+            width: min(680px, 100%);
+            margin: 0 auto;
+            padding: 28px 16px;
+        }
+
+        h1 {
+            margin: 0 0 18px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        input,
+        textarea,
+        button,
+        a.button {
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 10px;
+            font-size: 1.15rem;
+        }
+
+        input,
+        textarea {
+            border: 2px solid #c99;
+            padding: 16px;
+            background: #fff;
+        }
+
+        textarea {
+            min-height: 120px;
+            margin-top: 16px;
+            resize: vertical;
+        }
+
+        button,
+        a.button {
+            display: block;
+            margin-top: 14px;
+            border: 0;
+            padding: 16px;
+            color: #fff;
+            background: #8b2f3c;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .secondary {
+            background: #5b4b4b;
+        }
+
+        .note {
+            margin-top: 14px;
+            min-height: 28px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #2f6b3b;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Tạo link mời cưới</h1>
+
+        <label for="guestName">Nhập tên khách mời</label>
+        <input id="guestName" type="text" placeholder="Ví dụ: Bác Minh và gia đình" autocomplete="off">
+
+        <button id="createLink" type="button">Tạo link</button>
+        <textarea id="inviteLink" readonly placeholder="Link mời sẽ hiện ở đây"></textarea>
+        <button id="copyLink" type="button">Sao chép link</button>
+        <a class="button secondary" id="openLink" href="https://weddingnhunghung.vercel.app/" target="_blank" rel="noopener">Mở xem thử</a>
+        <div class="note" id="message"></div>
+    </main>
+
+    <script>
+        const guestName = document.getElementById("guestName");
+        const inviteLink = document.getElementById("inviteLink");
+        const openLink = document.getElementById("openLink");
+        const message = document.getElementById("message");
+        const inviteBaseUrl = "https://weddingnhunghung.vercel.app/";
+
+        function buildLink() {
+            const url = new URL(inviteBaseUrl);
+            const name = guestName.value.trim();
+            if (name) url.searchParams.set("name", name);
+            return url.toString();
+        }
+
+        function createLink() {
+            const link = buildLink();
+            inviteLink.value = link;
+            openLink.href = link;
+            message.textContent = "Đã tạo link.";
+        }
+
+        document.getElementById("createLink").addEventListener("click", createLink);
+
+        document.getElementById("copyLink").addEventListener("click", async function () {
+            if (!inviteLink.value) createLink();
+            inviteLink.select();
+            try {
+                await navigator.clipboard.writeText(inviteLink.value);
+            } catch (error) {
+                document.execCommand("copy");
+            }
+            message.textContent = "Đã sao chép link.";
+        });
+
+        guestName.addEventListener("input", createLink);
+        createLink();
+    </script>
+</body>
+</html>
