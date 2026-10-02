@@ -8,9 +8,37 @@ const myParam = urlParams.get('name');
 // Gắn biến vào nội dung thẻ p
 const output = document.getElementById("ten");
 const output2 = document.getElementById("ten2");
+const rsvpName = document.getElementById("rsvpName");
 
-if (output) output.innerHTML = myParam || "";
-if (output2) output2.innerHTML = myParam || "";
+if (output) output.textContent = myParam || "";
+if (output2) output2.textContent = myParam || "";
+if (rsvpName && myParam) rsvpName.value = myParam;
+
+const zaloPhone = "0936459577";
+const rsvpForm = document.getElementById("rsvpForm");
+
+if (rsvpForm) {
+    rsvpForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById("rsvpName").value.trim();
+        const attendance = document.getElementById("rsvpAttendance").value;
+        const guests = document.getElementById("rsvpGuests").value || "1";
+        const note = document.getElementById("rsvpNote").value.trim();
+        const status = document.getElementById("rsvpStatus");
+        const message = [
+            "Xác nhận tham dự tiệc cưới Hồng Nhung & Huy Hùng",
+            "Tên: " + name,
+            "Phản hồi: " + attendance,
+            "Số người tham dự: " + guests,
+            note ? "Lời nhắn: " + note : ""
+        ].filter(Boolean).join("\n");
+
+        navigator.clipboard?.writeText(message).catch(function () {});
+        if (status) status.textContent = "Đã sao chép nội dung xác nhận. Vui lòng dán vào khung chat Zalo vừa mở.";
+        window.open("https://zalo.me/" + zaloPhone, "_blank", "noopener");
+    });
+}
 
 const weddingTime = new Date(2026, 9, 25, 17, 0, 0).getTime();
 const countdown = {

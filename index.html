@@ -6,8 +6,14 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Hồng Nhung & Huy Hùng</title>
-    <meta content="Xin hãy đến và chúc mừng đám cưới của Hồng Nhung và Huy Hùng!" name="description" />
-    <meta property="og:image" content="images/1.JPG">
+    <meta content="Trân trọng kính mời bạn đến chung vui cùng Hồng Nhung & Huy Hùng." name="description" />
+    <meta property="og:title" content="Hồng Nhung & Huy Hùng">
+    <meta property="og:description" content="Trân trọng kính mời bạn đến chung vui cùng Hồng Nhung & Huy Hùng.">
+    <meta property="og:image" content="https://weddingnhunghung.vercel.app/images/zalo-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://weddingnhunghung.vercel.app/">
+    <meta property="og:type" content="website">
 
     <link href="images/favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
     <link href="images/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
@@ -15,7 +21,7 @@
     <link href="https://fonts.googleapis.com/css?family=Dosis:400,500" rel="stylesheet">
    
     <link href="css/ekko-lightbox.css" rel="stylesheet">
-    <link href="styles/main.css?v=20260930-6" rel="stylesheet">
+    <link href="styles/main.css?v=20261002-1" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Alex Brush' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Lovers Quarrel' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Dancing Script' rel='stylesheet'>
@@ -79,6 +85,7 @@
                                 <li class="nav-item"><a class="nav-link smooth-scroll" href="#home">Home</a></li>
                                 <li class="nav-item"><a class="nav-link smooth-scroll" href="#couple">Couple</a></li>
                                 <li class="nav-item"><a class="nav-link smooth-scroll" href="#events">Ivitation </a></li>
+                                <li class="nav-item"><a class="nav-link smooth-scroll" href="#rsvp">Xác nhận</a></li>
                                 <li class="nav-item"><a class="nav-link smooth-scroll" href="#gift">Gift</a></li>
                                 <li class="nav-item"><a class="nav-link smooth-scroll" href="#gallery">Gallery</a></li>
                             </ul>
@@ -147,6 +154,30 @@
                     </div>
                 </div>
             </div>
+            <div class="ww-section ww-rsvp-box-section" id="rsvp">
+                <div class="container">
+                    <h2 class="rsvp-title">Xác Nhận Tham Dự</h2>
+                    <form class="rsvp-card" id="rsvpForm">
+                        <label for="rsvpName">Tên của bạn</label>
+                        <input id="rsvpName" name="name" type="text" autocomplete="name" required>
+
+                        <label for="rsvpAttendance">Bạn sẽ tham dự?</label>
+                        <select id="rsvpAttendance" name="attendance">
+                            <option>Có, mình sẽ đến</option>
+                            <option>Rất tiếc, mình không đến được</option>
+                        </select>
+
+                        <label for="rsvpGuests">Số người tham dự</label>
+                        <input id="rsvpGuests" name="guests" type="number" min="1" value="1" inputmode="numeric">
+
+                        <label for="rsvpNote">Lời nhắn (không bắt buộc)</label>
+                        <textarea id="rsvpNote" name="note"></textarea>
+
+                        <button type="submit">Gửi xác nhận</button>
+                        <p class="rsvp-status" id="rsvpStatus" role="status"></p>
+                    </form>
+                </div>
+            </div>
 <div class="ww-section" id="gallery">
                 <div class="ww-photo-gallery">
                     <div class="container">
@@ -193,7 +224,7 @@
     <script src="js/aos.js"></script>
     <script src="js/parallax.min.js"></script>
     <script src="js/ekko-lightbox.min.js"></script>
-    <script src="scripts/main.js?v=20260929-16"></script>
+    <script src="scripts/main.js?v=20261002-1"></script>
 
     <div class="bottom_right"><i class="fa fa-arrow-up fa-2x" id="go-to-top"></i>
     </div>

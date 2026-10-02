@@ -10319,6 +10319,97 @@ body {
     font-size: 1.15rem;
 }
 
+.ww-rsvp-box-section {
+    padding: 64px 0 68px;
+    background: #fbf8f3;
+}
+
+.rsvp-title {
+    margin: 0 0 42px;
+    color: #5d5048;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2.35rem;
+    font-weight: 400;
+    text-align: center;
+}
+
+.rsvp-title::after {
+    content: "";
+    display: block;
+    width: 62px;
+    height: 1px;
+    margin: 24px auto 0;
+    background: #c6a46e;
+}
+
+.rsvp-card {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 42px 52px 40px;
+    background: #fff;
+    border: 1px solid #ddc9ad;
+    border-radius: 8px;
+    box-shadow: 0 12px 28px rgba(99, 73, 45, 0.08);
+}
+
+.rsvp-card label {
+    display: block;
+    margin: 0 0 8px;
+    color: #a1815b;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+}
+
+.rsvp-card input,
+.rsvp-card select,
+.rsvp-card textarea {
+    display: block;
+    width: 100%;
+    margin: 0 0 18px;
+    padding: 10px 4px;
+    color: #5d5048;
+    background: #fff;
+    border: 0;
+    border-bottom: 1px solid #c9ad86;
+    border-radius: 0;
+    outline: 0;
+}
+
+.rsvp-card textarea {
+    min-height: 96px;
+    resize: vertical;
+}
+
+.rsvp-card input:focus,
+.rsvp-card select:focus,
+.rsvp-card textarea:focus {
+    border-bottom-color: #5d5048;
+}
+
+.rsvp-card button {
+    width: 100%;
+    margin-top: 4px;
+    padding: 12px 18px;
+    color: #fff;
+    background: #5c4d44;
+    border: 0;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.rsvp-status {
+    min-height: 24px;
+    margin: 14px 0 0;
+    color: #6b5b4f;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
 .ww-section.bg-light,
 #gallery,
 .ww-map-section {
@@ -10463,6 +10554,14 @@ body {
     .ww-invite [class*="col-"],
     .ww-invite .text-right {
         text-align: center !important;
+    }
+
+    .rsvp-title {
+        font-size: 2rem;
+    }
+
+    .rsvp-card {
+        padding: 30px 24px 28px;
     }
 
     .ww-section.bg-light::before,
