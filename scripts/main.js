@@ -23,8 +23,12 @@ if (rsvpForm) {
         const attendance = attendanceInput.value.toLowerCase();
         if (attendance.includes("không")) {
             guestsInput.value = "0";
+            guestsInput.disabled = true;
         } else if (!guestsInput.value || Number(guestsInput.value) < 1) {
             guestsInput.value = "1";
+            guestsInput.disabled = false;
+        } else {
+            guestsInput.disabled = false;
         }
     });
 
