@@ -10219,6 +10219,13 @@ body {
     margin: 0 8px;
 }
 
+.announcement-location {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 1.25em;
+    font-weight: 700;
+}
+
 .map-link {
     display: inline-block;
     margin-top: 16px;
@@ -10532,6 +10539,10 @@ body {
         font-size: 0.82rem !important;
         line-height: 1.35;
         margin-bottom: 0.44rem;
+    }
+
+    .announcement-location {
+        font-size: 1.35em;
     }
 
     .ww-invite p:nth-of-type(8) {

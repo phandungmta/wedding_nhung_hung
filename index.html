@@ -10,10 +10,17 @@
     <meta property="og:title" content="Hồng Nhung & Huy Hùng">
     <meta property="og:description" content="Trân trọng kính mời bạn đến chung vui cùng Hồng Nhung & Huy Hùng.">
     <meta property="og:image" content="https://weddingnhunghung.vercel.app/images/zalo-preview.jpg">
+    <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://weddingnhunghung.vercel.app/">
+    <meta property="og:site_name" content="weddingnhunghung.vercel.app">
+    <meta property="og:locale" content="vi_VN">
     <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hồng Nhung & Huy Hùng">
+    <meta name="twitter:description" content="Trân trọng kính mời bạn đến chung vui cùng Hồng Nhung & Huy Hùng.">
+    <meta name="twitter:image" content="https://weddingnhunghung.vercel.app/images/zalo-preview.jpg">
 
     <link href="images/favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
     <link href="images/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
@@ -57,11 +64,13 @@
                         </p>
                         <div class="row ww-announcement-container">
                             <div class="col-12 h2 mt-5 ww-title"
-                                style="font-family: 'Josefin Sans', serif; font-size:1.0em; letter-spacing:-1px">
+                                style="font-family: 'Josefin Sans', serif; font-size:2em; letter-spacing:-1px">
                                 <b>CHỦ NHẬT, 25/10/2026</b>
                                 <br>
-                                <b style="font-size:1.4em;">17 GIỜ 00</b>
-                                <br>Tầng 2 – Trung tâm tiệc cưới Mipec Palace, 229 – Tây Sơn – Hà Nội
+                                <b style="font-size:1.6em;">17 GIỜ 00</b>
+                                <br><span class="announcement-location">Tầng 2 – Trung tâm tiệc cưới Mipec Palace</span>
+								<br><span class="announcement-location">229 – Tây Sơn – Hà Nội</span>
+								
                             </div>
                         </div>
                         <div class="wedding-countdown" aria-label="Đếm ngược đến lễ cưới">
@@ -154,30 +163,6 @@
                     </div>
                 </div>
             </div>
-            <div class="ww-section ww-rsvp-box-section" id="rsvp">
-                <div class="container">
-                    <h2 class="rsvp-title">Xác Nhận Tham Dự</h2>
-                    <form class="rsvp-card" id="rsvpForm">
-                        <label for="rsvpName">Tên của bạn</label>
-                        <input id="rsvpName" name="name" type="text" autocomplete="name" required>
-
-                        <label for="rsvpAttendance">Bạn sẽ tham dự?</label>
-                        <select id="rsvpAttendance" name="attendance">
-                            <option>Có, mình sẽ đến</option>
-                            <option>Rất tiếc, mình không đến được</option>
-                        </select>
-
-                        <label for="rsvpGuests">Số người tham dự</label>
-                        <input id="rsvpGuests" name="guests" type="number" min="1" value="1" inputmode="numeric">
-
-                        <label for="rsvpNote">Lời nhắn (không bắt buộc)</label>
-                        <textarea id="rsvpNote" name="note"></textarea>
-
-                        <button type="submit">Gửi xác nhận</button>
-                        <p class="rsvp-status" id="rsvpStatus" role="status"></p>
-                    </form>
-                </div>
-            </div>
 <div class="ww-section" id="gallery">
                 <div class="ww-photo-gallery">
                     <div class="container">
@@ -209,6 +194,30 @@
                     <p class="gift-note">Sự hiện diện của quý khách là niềm vinh hạnh của gia đình chúng tôi!</p>
                 </div>
             </div>
+            <div class="ww-section ww-rsvp-box-section" id="rsvp">
+                <div class="container">
+                    <h2 class="rsvp-title">Xác Nhận Tham Dự</h2>
+                    <form class="rsvp-card" id="rsvpForm">
+                        <label for="rsvpName">Tên của bạn</label>
+                        <input id="rsvpName" name="name" type="text" autocomplete="name" required>
+
+                        <label for="rsvpAttendance">Bạn sẽ tham dự?</label>
+                        <select id="rsvpAttendance" name="attendance">
+                            <option>Có, mình sẽ đến</option>
+                            <option>Rất tiếc, mình không đến được</option>
+                        </select>
+
+                        <label for="rsvpGuests">Số người tham dự</label>
+                        <input id="rsvpGuests" name="guests" type="number" min="1" value="1" inputmode="numeric">
+
+                        <label for="rsvpNote">Lời nhắn (không bắt buộc)</label>
+                        <textarea id="rsvpNote" name="note"></textarea>
+
+                        <button type="submit">Gửi xác nhận</button>
+                        <p class="rsvp-status" id="rsvpStatus" role="status"></p>
+                    </form>
+                </div>
+            </div>
           
            
 
@@ -224,7 +233,8 @@
     <script src="js/aos.js"></script>
     <script src="js/parallax.min.js"></script>
     <script src="js/ekko-lightbox.min.js"></script>
-    <script src="scripts/main.js?v=20261002-1"></script>
+    <script src="scripts/rsvp-config.js?v=20261002-1"></script>
+    <script src="scripts/main.js?v=20261002-2"></script>
 
     <div class="bottom_right"><i class="fa fa-arrow-up fa-2x" id="go-to-top"></i>
     </div>

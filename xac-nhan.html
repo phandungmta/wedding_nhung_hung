@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Danh sách xác nhận tham dự</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fbf8f3;
+            color: #4a4039;
+        }
+
+        main {
+            width: min(960px, 100%);
+            margin: 0 auto;
+            padding: 32px 16px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin: 0 0 18px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 2rem;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .summary {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .summary span {
+            padding: 8px 12px;
+            background: #fff;
+            border: 1px solid #ddc9ad;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        .status {
+            min-height: 24px;
+            margin: 0 0 14px;
+            text-align: center;
+            color: #7a6a62;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border: 1px solid #ddc9ad;
+        }
+
+        th,
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eadbc7;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            color: #8a6f4f;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        tr:last-child td {
+            border-bottom: 0;
+        }
+
+        @media (max-width: 700px) {
+            table,
+            thead,
+            tbody,
+            tr,
+            th,
+            td {
+                display: block;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tr {
+                border-bottom: 1px solid #ddc9ad;
+                padding: 8px 0;
+            }
+
+            td {
+                border-bottom: 0;
+                padding: 6px 12px;
+            }
+
+            td::before {
+                content: attr(data-label) ": ";
+                color: #8a6f4f;
+                font-weight: 700;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Danh sách xác nhận tham dự</h1>
+        <div class="summary" id="rsvpSummary"></div>
+        <p class="status" id="rsvpStatus">Đang tải...</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Thời gian</th>
+                    <th>Tên</th>
+                    <th>Tham dự</th>
+                    <th>Số người</th>
+                    <th>Lời nhắn</th>
+                </tr>
+            </thead>
+            <tbody id="rsvpRows"></tbody>
+        </table>
+    </main>
+
+    <script src="scripts/rsvp-config.js?v=20261002-1"></script>
+    <script>
+        const sheetUrl = window.RSVP_SHEET_URL || "";
+        const statusEl = document.getElementById("rsvpStatus");
+        const summaryEl = document.getElementById("rsvpSummary");
+        const rowsEl = document.getElementById("rsvpRows");
+
+        function cell(label, value) {
+            const td = document.createElement("td");
+            td.dataset.label = label;
+            td.textContent = value || "";
+            return td;
+        }
+
+        async function loadRows() {
+            if (!sheetUrl) {
+                statusEl.textContent = "Chưa cấu hình Google Sheet.";
+                return;
+            }
+
+            try {
+                const response = await fetch(sheetUrl);
+                const data = await response.json();
+                const rows = data.rows || [];
+                const yesRows = rows.filter(function(row) { return row.attendance === "Có, mình sẽ đến"; });
+                const guestTotal = yesRows.reduce(function(total, row) {
+                    return total + (parseInt(row.guestCount, 10) || 0);
+                }, 0);
+
+                summaryEl.innerHTML = "";
+                [["Phản hồi", rows.length], ["Sẽ đến", yesRows.length], ["Số khách", guestTotal]].forEach(function(item) {
+                    const span = document.createElement("span");
+                    span.textContent = item[0] + ": " + item[1];
+                    summaryEl.appendChild(span);
+                });
+
+                rowsEl.innerHTML = "";
+                rows.reverse().forEach(function(row) {
+                    const tr = document.createElement("tr");
+                    tr.appendChild(cell("Thời gian", row.time ? new Date(row.time).toLocaleString("vi-VN") : ""));
+                    tr.appendChild(cell("Tên", row.guestName));
+                    tr.appendChild(cell("Tham dự", row.attendance));
+                    tr.appendChild(cell("Số người", row.guestCount));
+                    tr.appendChild(cell("Lời nhắn", row.message));
+                    rowsEl.appendChild(tr);
+                });
+
+                statusEl.textContent = rows.length ? "" : "Chưa có xác nhận nào.";
+            } catch (error) {
+                statusEl.textContent = "Chưa tải được danh sách xác nhận.";
+            }
+        }
+
+        loadRows();
+    </script>
+</body>
+</html>

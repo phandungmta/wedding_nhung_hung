@@ -14,11 +14,11 @@ if (output) output.textContent = myParam || "";
 if (output2) output2.textContent = myParam || "";
 if (rsvpName && myParam) rsvpName.value = myParam;
 
-const zaloPhone = "0936459577";
+const googleSheetUrl = window.RSVP_SHEET_URL || "";
 const rsvpForm = document.getElementById("rsvpForm");
 
 if (rsvpForm) {
-    rsvpForm.addEventListener("submit", function (event) {
+    rsvpForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
         const name = document.getElementById("rsvpName").value.trim();
@@ -26,17 +26,37 @@ if (rsvpForm) {
         const guests = document.getElementById("rsvpGuests").value || "1";
         const note = document.getElementById("rsvpNote").value.trim();
         const status = document.getElementById("rsvpStatus");
-        const message = [
-            "Xác nhận tham dự tiệc cưới Hồng Nhung & Huy Hùng",
-            "Tên: " + name,
-            "Phản hồi: " + attendance,
-            "Số người tham dự: " + guests,
-            note ? "Lời nhắn: " + note : ""
-        ].filter(Boolean).join("\n");
+        const submitButton = rsvpForm.querySelector("button[type='submit']");
 
-        navigator.clipboard?.writeText(message).catch(function () {});
-        if (status) status.textContent = "Đã sao chép nội dung xác nhận. Vui lòng dán vào khung chat Zalo vừa mở.";
-        window.open("https://zalo.me/" + zaloPhone, "_blank", "noopener");
+        if (!googleSheetUrl) {
+            if (status) status.textContent = "Chưa cấu hình Google Sheet. Vui lòng thử lại sau.";
+            return;
+        }
+
+        if (status) status.textContent = "Đang gửi xác nhận...";
+        if (submitButton) submitButton.disabled = true;
+
+        try {
+            await fetch(googleSheetUrl, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify({
+                    guestName: name,
+                    attendance: attendance,
+                    guestCount: guests,
+                    message: note,
+                    pageUrl: window.location.href
+                })
+            });
+            if (status) status.textContent = "Cảm ơn bạn đã xác nhận tham dự.";
+            rsvpForm.reset();
+            if (rsvpName && myParam) rsvpName.value = myParam;
+        } catch (error) {
+            if (status) status.textContent = "Chưa gửi được xác nhận. Vui lòng thử lại.";
+        } finally {
+            if (submitButton) submitButton.disabled = false;
+        }
     });
 }
 
