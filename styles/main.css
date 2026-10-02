@@ -10319,6 +10319,37 @@ body {
     font-weight: 700;
 }
 
+.gift-bank-info {
+    margin-top: 12px;
+    padding: 12px 14px;
+    color: #4d4038;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(143, 43, 34, 0.12);
+    font-size: 0.95rem;
+    line-height: 1.45;
+}
+
+.gift-bank-info strong,
+.gift-bank-info span {
+    display: block;
+}
+
+.gift-bank-info strong {
+    color: #8f2b22;
+}
+
+.gift-bank-info button {
+    margin-top: 10px;
+    padding: 7px 12px;
+    color: #fff;
+    background: #8f2b22;
+    border: 0;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
 .gift-note {
     margin: 28px 0 0;
     color: #5c4a44;

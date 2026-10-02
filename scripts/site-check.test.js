@@ -22,12 +22,17 @@ assert(index.includes('name="twitter:card" content="summary_large_image"'));
 assert(index.includes('id="rsvpForm"'));
 assert(index.includes('id="rsvpGuests"'));
 assert(index.includes('href="#rsvp"'));
+assert(index.includes('data-copy-bank-account'));
+assert(main.includes('data-copy-bank-account'));
+assert(main.includes('1006844599'));
 
 assert(config.includes("window.RSVP_SHEET_URL"));
 assert(main.includes("window.RSVP_SHEET_URL"));
 assert(main.includes("await fetch(googleSheetUrl"));
 assert(main.includes("guestCount: guests"));
 assert(main.includes("attendance: attendance"));
+assert(main.includes('attendance.includes("không")'));
+assert(index.includes('id="rsvpGuests" name="guests" type="number" min="0"'));
 assert(!main.includes("zalo.me/"));
 
 assert(list.includes('id="rsvpRows"'));

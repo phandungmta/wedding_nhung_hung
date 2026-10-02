@@ -16,6 +16,18 @@ const googleSheetUrl = window.RSVP_SHEET_URL || "";
 const rsvpForm = document.getElementById("rsvpForm");
 
 if (rsvpForm) {
+    const attendanceInput = document.getElementById("rsvpAttendance");
+    const guestsInput = document.getElementById("rsvpGuests");
+
+    attendanceInput.addEventListener("change", function () {
+        const attendance = attendanceInput.value.toLowerCase();
+        if (attendance.includes("không")) {
+            guestsInput.value = "0";
+        } else if (!guestsInput.value || Number(guestsInput.value) < 1) {
+            guestsInput.value = "1";
+        }
+    });
+
     rsvpForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
@@ -54,6 +66,28 @@ if (rsvpForm) {
         } finally {
             if (submitButton) submitButton.disabled = false;
         }
+    });
+}
+
+const copyBankButton = document.querySelector("[data-copy-bank-account]");
+
+if (copyBankButton) {
+    copyBankButton.addEventListener("click", async function () {
+        const account = copyBankButton.dataset.copyBankAccount || "1006844599";
+        try {
+            await navigator.clipboard.writeText(account);
+        } catch (error) {
+            const input = document.createElement("input");
+            input.value = account;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand("copy");
+            input.remove();
+        }
+        copyBankButton.textContent = "Đã sao chép";
+        setTimeout(function () {
+            copyBankButton.textContent = "Sao chép STK";
+        }, 1600);
     });
 }
 
