@@ -8,11 +8,9 @@ const myParam = urlParams.get('name');
 // Gắn biến vào nội dung thẻ p
 const output = document.getElementById("ten");
 const output2 = document.getElementById("ten2");
-const rsvpName = document.getElementById("rsvpName");
 
 if (output) output.textContent = myParam || "";
 if (output2) output2.textContent = myParam || "";
-if (rsvpName && myParam) rsvpName.value = myParam;
 
 const googleSheetUrl = window.RSVP_SHEET_URL || "";
 const rsvpForm = document.getElementById("rsvpForm");
@@ -51,7 +49,6 @@ if (rsvpForm) {
             });
             if (status) status.textContent = "Cảm ơn bạn đã xác nhận tham dự.";
             rsvpForm.reset();
-            if (rsvpName && myParam) rsvpName.value = myParam;
         } catch (error) {
             if (status) status.textContent = "Chưa gửi được xác nhận. Vui lòng thử lại.";
         } finally {
