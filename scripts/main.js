@@ -77,7 +77,7 @@ const copyBankButton = document.querySelector("[data-copy-bank-account]");
 
 if (copyBankButton) {
     copyBankButton.addEventListener("click", async function () {
-        const account = copyBankButton.dataset.copyBankAccount || "1006844599";
+        const account = copyBankButton.dataset.copyBankAccount || "19027514197020";
         try {
             await navigator.clipboard.writeText(account);
         } catch (error) {

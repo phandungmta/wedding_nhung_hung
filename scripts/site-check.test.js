@@ -24,7 +24,7 @@ assert(index.includes('id="rsvpGuests"'));
 assert(index.includes('href="#rsvp"'));
 assert(index.includes('data-copy-bank-account'));
 assert(main.includes('data-copy-bank-account'));
-assert(main.includes('1006844599'));
+assert(main.includes('19027514197020'));
 
 assert(config.includes("window.RSVP_SHEET_URL"));
 assert(main.includes("window.RSVP_SHEET_URL"));
