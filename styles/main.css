@@ -10297,6 +10297,11 @@ body {
     letter-spacing: 1px;
 }
 
+h4.gift-title {
+    margin-bottom: 12px;
+    font-size: 1.05rem;
+}
+
 .gift-qr-box {
     display: inline-block;
     padding: 14px 14px 10px;
